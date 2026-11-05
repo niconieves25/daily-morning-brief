@@ -1,6 +1,7 @@
 (() => {
   const ambient = document.querySelector('.ambient-flow');
   if (!ambient) return;
+  const heroArt = document.querySelector('.decode-art');
 
   const previewDate = new URLSearchParams(location.search).get('artDate');
   const parts = new Intl.DateTimeFormat('en-US', {
@@ -152,6 +153,28 @@
       ctx.beginPath();
       ctx.arc(node.renderX, node.renderY, node.radius, 0, Math.PI * 2);
       ctx.fill();
+    }
+
+    // Ease the constellation away from the artwork without drawing a rectangular veil.
+    if (heroArt) {
+      const art = heroArt.getBoundingClientRect();
+      if (art.bottom > bounds.top && art.top < bounds.bottom) {
+        const x = art.left - bounds.left + art.width / 2;
+        const y = art.top - bounds.top + art.height / 2;
+        ctx.save();
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.translate(x, y);
+        ctx.scale(art.width * .75, art.height * .82);
+        const fade = ctx.createRadialGradient(0, 0, 0, 0, 0, 1);
+        fade.addColorStop(0, 'rgba(0,0,0,.86)');
+        fade.addColorStop(.55, 'rgba(0,0,0,.62)');
+        fade.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = fade;
+        ctx.beginPath();
+        ctx.arc(0, 0, 1, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
     }
   }
 

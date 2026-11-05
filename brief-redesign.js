@@ -693,3 +693,152 @@
   try { alreadyUnlocked = sessionStorage.getItem(storageKey) === '1'; } catch (_) { /* Play normally. */ }
   if (alreadyUnlocked) openBrief();
 })();
+
+// Keep the overview readable; unfold each long reading section only on request.
+(() => {
+  const topWrap = document.querySelector('.top > .wrap');
+  const firstOverviewItem = topWrap?.querySelector(':scope > #brief-start');
+  if (firstOverviewItem) {
+    const items = [];
+    for (let item = firstOverviewItem; item && item.id !== 'reflection'; item = item.nextElementSibling) items.push(item);
+    const overview = document.createElement('section');
+    overview.id = 'overview';
+    overview.className = 'brief-overview-section';
+    const rail = document.createElement('div');
+    rail.className = 'rail';
+    rail.append('At a glance');
+    const detail = document.createElement('small');
+    detail.textContent = 'Markets · priorities · stories';
+    rail.append(detail);
+    const body = document.createElement('div');
+    body.className = 'brief-overview-body';
+    topWrap.insertBefore(overview, firstOverviewItem);
+    overview.append(rail, body);
+    body.append(...items);
+  }
+  const sections = [...document.querySelectorAll('.top > .wrap > section, body > main.wrap > section')];
+  if (!sections.length) return;
+
+  const previews = {
+    overview: 'Markets, priorities, and story signals.',
+    reflection: 'A reading and a moment to pause.',
+    attention: 'The things that need your attention today.',
+    workout: 'Your training plan and the next session.',
+    news: 'The stories behind today’s headlines.',
+    number: 'One number worth keeping.',
+    oilgas: 'One idea to learn and take with you.',
+    comer: 'A place and the story behind it.',
+    finish: 'The next few days, before you go.'
+  };
+  const titles = {
+    overview: 'At a glance',
+    reflection: 'Morning reflection',
+    number: 'The number',
+    oilgas: 'Oil & Gas lesson',
+    comer: 'Dónde comer'
+  };
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const animate = window.BriefMotion?.animate;
+
+  const text = (tag, className, value) => {
+    const element = document.createElement(tag);
+    element.className = className;
+    element.textContent = value;
+    return element;
+  };
+
+  for (const [index, section] of sections.entries()) {
+    const rail = section.querySelector(':scope > .rail');
+    const panel = [...section.children].find(child => child !== rail && child.tagName === 'DIV');
+    if (!rail || !panel) continue;
+
+    const id = section.id || 'number';
+    if (!section.id) section.id = id;
+    const heading = panel.querySelector('h2');
+    const title = titles[id] || heading?.textContent.trim() || rail.firstChild?.textContent.trim() || 'Read this section';
+    const label = rail.firstChild?.textContent.trim() || title;
+    const detail = rail.querySelector('small')?.textContent.trim() || '';
+    const headingShell = document.createElement('h2');
+    headingShell.className = 'brief-disclosure-heading';
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'brief-disclosure-toggle';
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-controls', `${id}-content`);
+    const meta = document.createElement('span');
+    meta.className = 'brief-disclosure-meta';
+    meta.append(text('span', 'brief-disclosure-count', String(index + 1).padStart(2, '0')));
+    meta.append(text('span', 'brief-disclosure-kicker', label));
+    if (detail) meta.append(text('span', 'brief-disclosure-detail', detail));
+    toggle.append(meta);
+    toggle.append(text('span', 'brief-disclosure-title', title));
+    toggle.append(text('span', 'brief-disclosure-preview', previews[id] || 'Open this part of the brief.'));
+    toggle.append(text('span', 'brief-disclosure-indicator', 'Open'));
+    headingShell.append(toggle);
+
+    section.insertBefore(headingShell, rail);
+    section.classList.add('brief-disclosure');
+    if (id === 'news' || id === 'overview') section.classList.add('brief-disclosure-wide');
+    rail.hidden = true;
+    panel.classList.add('brief-disclosure-panel');
+    panel.id = `${id}-content`;
+    panel.hidden = true;
+    panel.inert = true;
+    panel.style.height = '0px';
+    panel.style.opacity = '0';
+    if (heading && heading.parentElement === panel && heading.textContent.trim() === title) {
+      heading.classList.add('brief-disclosure-original-title');
+    }
+
+    let animation;
+    let revision = 0;
+    section.openBriefSection = (open, withMotion = true) => {
+      if (section.classList.contains('is-open') === open && !animation) return;
+      const currentHeight = panel.hidden ? 0 : panel.getBoundingClientRect().height;
+      animation?.stop();
+      animation = null;
+      const currentRevision = ++revision;
+      section.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.querySelector('.brief-disclosure-indicator').textContent = open ? 'Close' : 'Open';
+
+      if (open) {
+        panel.hidden = false;
+        panel.inert = false;
+      } else {
+        panel.inert = true;
+      }
+      if (!withMotion || reducedMotion.matches || !animate) {
+        panel.hidden = !open;
+        panel.style.height = open ? 'auto' : '0px';
+        panel.style.opacity = open ? '1' : '0';
+        return;
+      }
+
+      panel.style.height = `${currentHeight}px`;
+      animation = animate(panel, { height: open ? 'auto' : '0px', opacity: open ? 1 : 0 }, {
+        duration: open ? 0.42 : 0.32,
+        ease: 'easeInOut'
+      });
+      animation.finished.then(() => {
+        if (currentRevision !== revision) return;
+        panel.hidden = !open;
+        panel.style.height = open ? 'auto' : '0px';
+        animation = null;
+      }).catch(() => { /* A newer click superseded this transition. */ });
+    };
+    toggle.addEventListener('click', () => section.openBriefSection(!section.classList.contains('is-open')));
+  }
+
+  const revealHashTarget = () => {
+    if (!location.hash) return;
+    let target;
+    try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch (_) { return; }
+    const section = target?.closest('.brief-disclosure');
+    if (!section) return;
+    section.openBriefSection(true, false);
+    requestAnimationFrame(() => target.scrollIntoView({ block: 'start' }));
+  };
+  window.addEventListener('hashchange', revealHashTarget);
+  revealHashTarget();
+})();
