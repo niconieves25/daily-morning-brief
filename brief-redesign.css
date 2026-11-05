@@ -323,3 +323,7 @@ html.brief-locked .puzzle-depth-canvas{transform:translate3d(var(--puzzle-back-x
 .decode-art.puzzle-awaiting .puzzle-scene,.decode-art.puzzle-awaiting .decode-console,.decode-art.puzzle-awaiting .decode-hint,.decode-art.puzzle-awaiting .decode-reset{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s ease,visibility 0s linear .2s}
 .decode-art.puzzle-awaiting>.decode-visual,.decode-art.puzzle-awaiting>.decode-node{visibility:hidden}
 @media(prefers-reduced-motion:reduce){.decode-art .puzzle-scene,.decode-art .decode-console,.decode-art .decode-hint,.decode-art .decode-reset{transition:none}}
+
+/* Give both the cipher and the daily artwork a calm pocket in the global constellation. */
+.decode-art{isolation:isolate}
+.decode-art::before{content:"";position:absolute;z-index:0;inset:0;pointer-events:none;background:radial-gradient(ellipse 76% 88% at 50% 47%,rgba(2,8,20,.92) 0%,rgba(2,8,20,.82) 45%,rgba(2,8,20,.42) 73%,transparent 100%)}
