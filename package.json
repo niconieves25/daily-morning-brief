@@ -1,0 +1,13 @@
+{
+  "name": "daily-morning-brief",
+  "private": true,
+  "scripts": {
+    "build:motion": "esbuild motion-entry.js --bundle --minify --format=iife --outfile=motion-runtime.js"
+  },
+  "dependencies": {
+    "motion": "^14.9.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.12"
+  }
+}

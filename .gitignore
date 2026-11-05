@@ -1,0 +1,15 @@
+node_modules/
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Personal source briefs and working references stay local.
+brief_*.html
+Nico-color-lab.html
+morning-*.png
+references/
+artwork-journal.md
+AGENTS.md
+.agents/
+.codex/

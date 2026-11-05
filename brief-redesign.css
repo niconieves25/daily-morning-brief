@@ -1,0 +1,325 @@
+/* Morning Brief / line study — opening screen */
+@font-face{font-family:'Space Grotesk';src:url('fonts/SpaceGrotesk-wght.woff2') format('woff2');font-style:normal;font-weight:300 700;font-display:swap}
+:root{color-scheme:light;--paper:#f8f7f2;--wash:#f8f7f2;--head:#1b2528;--ink:#1b2528;--body:#4d5656;--muted:#6f7878;--num:#899492;--hair:#d8ddda;--accent:#3b5fe5;--band:#d8ddda}
+html{scroll-behavior:smooth}
+body,.top{background:var(--paper)}
+.top{border-bottom:1px solid var(--hair)}
+.decode-shell{--d-ink:#182322;--d-muted:#687472;--d-line:#cdd4d0;--d-blue:#385de1;position:relative;margin:20px 0 0;border:1px solid var(--d-line);background:#fbfaf6;color:var(--d-ink);overflow:hidden}
+.decode-shell button,.decode-shell a{font-family:'JB Mono',ui-monospace,SFMono-Regular,Menlo,monospace}
+.decode-shell a{background-image:none}
+.decode-shell button{cursor:pointer}
+.decode-topline{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 28px;border-bottom:1px solid var(--d-line);font:500 10px/1.3 'JB Mono',ui-monospace,monospace;letter-spacing:.11em;text-transform:uppercase;color:var(--d-muted)}
+.decode-brand{display:flex;align-items:center;gap:10px;color:var(--d-ink);white-space:nowrap}
+.decode-topright{display:flex;align-items:center;gap:25px}
+.decode-live{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.decode-live:before{content:"";width:5px;height:5px;border-radius:50%;background:var(--d-blue);box-shadow:0 0 0 4px rgba(56,93,225,.11);animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(56,93,225,0)}}
+.decode-nav{display:grid;grid-template-columns:minmax(0,1.35fr) repeat(3,minmax(0,.55fr)) auto;border-bottom:1px solid var(--d-line)}
+.decode-greeting{display:flex;align-items:center;padding:20px 28px;font:700 clamp(23px,2.3vw,31px)/1 'Space Grotesk',system-ui,sans-serif;letter-spacing:-.045em;color:var(--d-ink)}
+.decode-greeting span{color:var(--d-blue)}
+.decode-stat{display:flex;flex-direction:column;justify-content:center;gap:4px;padding:15px 17px;border-left:1px solid var(--d-line)}
+.decode-stat-label{font:500 9px/1.3 'JB Mono',ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--d-muted)}
+.decode-stat-value{font:650 15px/1.2 'DM Sans',system-ui,sans-serif;color:var(--d-ink);white-space:nowrap}
+.decode-navlink{display:flex;align-items:center;justify-content:center;gap:8px;padding:15px 20px;border-left:1px solid var(--d-line);color:var(--d-ink);text-transform:uppercase;font-size:10px;letter-spacing:.06em;transition:background .2s,color .2s}
+.decode-navlink:hover,.decode-navlink:focus-visible{background:var(--d-blue);color:white}
+.decode-hero{display:grid;grid-template-columns:minmax(0,.98fr) minmax(0,1.02fr);min-height:520px}
+.decode-copy{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:67px clamp(30px,4.5vw,62px) 58px 48px;border-right:1px solid var(--d-line)}
+.decode-index{position:absolute;top:28px;left:48px;font:500 10px/1.4 'JB Mono',ui-monospace,monospace;letter-spacing:.08em;color:var(--d-muted)}
+.decode-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:19px;font:italic 600 22px/1.2 'Fraunces',Georgia,serif;letter-spacing:-.025em;text-transform:none;color:var(--d-blue)}
+.decode-eyebrow:before{content:"";width:24px;height:1px;background:var(--d-blue)}
+.decode-hero h1{max-width:none;margin:0;color:var(--d-ink);font:700 clamp(64px,5.7vw,92px)/1 'Space Grotesk',system-ui,sans-serif;letter-spacing:-.065em;white-space:nowrap}
+.decode-hero h1 em{font-style:normal;color:var(--d-blue)}
+.decode-actions{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.decode-primary{display:inline-flex;align-items:center;justify-content:space-between;gap:28px;min-width:205px;padding:15px 17px 15px 19px;background:var(--d-ink)!important;color:#fbfaf6!important;border:1px solid var(--d-ink);font:500 10px/1 'JB Mono',ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;transition:transform .2s,background .2s}
+.decode-primary:hover,.decode-primary:focus-visible{transform:translateY(-2px);background:var(--d-blue)!important;border-color:var(--d-blue)}
+.decode-secondary{display:inline-flex;align-items:center;gap:8px;color:var(--d-ink);font-size:10px;letter-spacing:.06em;text-transform:uppercase}
+.decode-secondary:hover,.decode-secondary:focus-visible{color:var(--d-blue)}
+.decode-art{position:relative;min-height:520px;background:#f6f7f2;overflow:hidden}
+.decode-artlabel{position:absolute;z-index:3;top:25px;left:28px;font:500 9px/1.3 'JB Mono',ui-monospace,monospace;letter-spacing:.11em;text-transform:uppercase;color:var(--d-muted)}
+.decode-visual{position:absolute;inset:0;width:100%;height:100%;display:block}
+.decode-visual .axis{fill:none;stroke:#aab8b2;stroke-width:1}
+.decode-visual .form{fill:none;stroke:#263b38;stroke-width:1.35}
+.decode-visual .soft{fill:none;stroke:#9baaa5;stroke-width:1}
+.decode-visual .accent{fill:none;stroke:var(--d-blue);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.decode-visual .ghost{fill:none;stroke:#aebbb6;stroke-width:1;stroke-dasharray:2 7}
+.decode-visual .fill{fill:var(--d-blue)}
+.decode-visual .trace{opacity:0;transition:stroke-dashoffset 1.2s cubic-bezier(.23,.8,.2,1),opacity .2s}
+.decode-art.has-progress .decode-visual .trace{opacity:1}
+.decode-art.is-complete .decode-visual .trace{stroke-dashoffset:0}
+.decode-drift{transform-box:fill-box;transform-origin:center;animation:drift 9s ease-in-out infinite}
+@keyframes drift{50%{transform:translateY(-7px) rotate(2deg)}}
+.decode-orbit{transform-origin:50% 47%;animation:orbit 35s linear infinite}
+@keyframes orbit{to{transform:rotate(360deg)}}
+.decode-node{position:absolute;z-index:4;display:grid;place-items:center;width:42px;height:42px;transform:translate(-50%,-50%);border:1px solid var(--d-ink);border-radius:50%;background:#fbfaf6;color:var(--d-ink);font:500 11px/1 'JB Mono',ui-monospace,monospace;box-shadow:0 0 0 7px rgba(248,249,245,.9);transition:background .22s,color .22s,border-color .22s,box-shadow .22s}
+.decode-node:hover,.decode-node:focus-visible{background:var(--d-blue);border-color:var(--d-blue);color:white;box-shadow:0 0 0 11px rgba(56,93,225,.12)}
+.decode-node[aria-pressed="true"]{background:var(--d-blue);border-color:var(--d-blue);color:white;box-shadow:0 0 0 7px rgba(56,93,225,.13)}
+.decode-console{position:absolute;z-index:3;left:0;right:0;bottom:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;min-height:65px;padding:12px 28px;border-top:1px solid var(--d-line);background:rgba(251,250,246,.94);backdrop-filter:blur(8px)}
+.decode-console-head{display:contents}
+.decode-console-head>span:first-child{font:500 9px/1.4 'JB Mono',ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--d-muted)}
+.decode-progress{order:3;min-width:60px;padding-left:12px;border-left:1px solid var(--d-line);color:var(--d-blue);font:500 10px/1.4 'JB Mono',ui-monospace,monospace;letter-spacing:.07em;text-align:right}
+.decode-console-body{display:contents}
+.decode-clue{order:2;min-width:0;color:var(--d-ink);font:500 11px/1.45 'JB Mono',ui-monospace,monospace;text-align:right}
+.decode-footline{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:11px 28px;border-top:1px solid var(--d-line);font:500 9px/1.4 'JB Mono',ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--d-muted)}
+.decode-shell :focus-visible{outline:2px solid var(--d-blue);outline-offset:3px}
+.decode-enter{animation:enter .65s cubic-bezier(.18,.8,.2,1) both}.decode-enter.d2{animation-delay:.08s}.decode-enter.d3{animation-delay:.16s}
+@keyframes enter{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:1050px){.decode-nav{grid-template-columns:minmax(0,1fr) repeat(3,auto)}.decode-navlink{display:none}.decode-copy{padding-left:34px}.decode-index{left:34px}.decode-hero h1{font-size:clamp(56px,6.1vw,70px)}.decode-console{grid-template-columns:1fr auto;gap:2px 10px}.decode-console-head>span:first-child{grid-column:1}.decode-clue{grid-column:1;grid-row:2;text-align:left}.decode-progress{grid-column:2;grid-row:1/3}}
+@media(max-width:760px){.decode-shell{margin-top:10px}.decode-topline{padding:13px 17px}.decode-edition{display:none}.decode-nav{grid-template-columns:repeat(3,1fr)}.decode-greeting{grid-column:1/-1;padding:16px 18px;border-bottom:1px solid var(--d-line)}.decode-stat{padding:11px 10px}.decode-stat:nth-child(2){border-left:0}.decode-stat-value{font-size:13px}.decode-hero{grid-template-columns:1fr}.decode-copy{min-height:392px;padding:66px 26px 40px;border-right:0;border-bottom:1px solid var(--d-line)}.decode-index{top:19px;left:26px}.decode-hero h1{font-size:clamp(30px,8.1vw,56px)}.decode-art{min-height:430px}.decode-footline{padding:10px 17px}}
+@media(max-width:440px){.decode-topline{font-size:9px}.decode-live{font-size:9px}.decode-greeting{font-size:23px}.decode-stat-label{font-size:8px}.decode-stat-value{font-size:12px}.decode-copy{min-height:375px}.decode-art{min-height:380px}.decode-artlabel{left:18px;top:17px}.decode-node{width:37px;height:37px}.decode-console{padding:9px 13px;min-height:64px}.decode-clue{font-size:10px}.decode-footline{font-size:8px}.decode-footline span:last-child{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.decode-live:before,.decode-orbit,.decode-drift,.decode-enter{animation:none}.decode-visual .trace,.decode-primary,.decode-node{transition:none}}
+
+/* Particle Drift opening: the supplied canvas effect, integrated into the brief. */
+.top{--paper:#080e18;--wash:rgba(14,27,45,.72);--head:#eef3ff;--ink:#f3f6ff;--body:#bdc9d9;--muted:#8c9ab0;--num:#6e7e96;--hair:rgba(185,207,238,.15);--band:rgba(185,207,238,.18);--accent:#60a5fa;position:relative;isolation:isolate;overflow:hidden;background:#030509;color:var(--body);border-bottom:1px solid var(--band)}
+.top>.wrap{position:relative;z-index:1}
+.ambient-flow{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:radial-gradient(ellipse at 72% 32%,#122947 0%,#080e1c 58%,#070914 100%)}
+.ambient-flow:before{content:"";position:absolute;inset:-24%;pointer-events:none;background:radial-gradient(ellipse 38% 24% at 18% 18%,rgba(44,109,235,.38),transparent 85%),radial-gradient(ellipse 38% 26% at 81% 46%,rgba(23,137,187,.3),transparent 85%),radial-gradient(ellipse 35% 22% at 28% 78%,rgba(83,77,190,.25),transparent 85%);filter:blur(28px);will-change:transform;animation:aurora-orbit 16s ease-in-out infinite}
+.ambient-flow:before{opacity:.82}
+@keyframes aurora-orbit{0%,100%{transform:translate3d(-7%,-5%,0) rotate(-4deg)}25%{transform:translate3d(8%,-7%,0) rotate(3deg)}50%{transform:translate3d(10%,7%,0) rotate(7deg)}75%{transform:translate3d(-8%,9%,0) rotate(-3deg)}}
+.ambient-flow:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,9,20,.64),rgba(7,9,20,.13) 60%,rgba(7,9,20,.3));pointer-events:none}
+.cursor-glow{position:absolute;top:0;left:0;width:clamp(260px,44vw,560px);height:clamp(260px,44vw,560px);border-radius:50%;pointer-events:none;opacity:0;background:radial-gradient(circle,rgba(96,165,250,.43) 0%,rgba(43,119,235,.22) 27%,rgba(18,72,169,.08) 53%,transparent 72%);filter:blur(16px);mix-blend-mode:screen;transform:translate3d(-50%,-50%,0);transition:transform .18s ease-out,opacity .28s ease-out;will-change:transform,opacity}
+#particle-drift-canvas{display:block;width:100%;height:100%;opacity:1}
+.decode-shell{--d-ink:#f2f6ff;--d-muted:#8c9bb2;--d-line:rgba(185,207,238,.18);--d-blue:#60a5fa;display:flex;flex-direction:column;min-height:100vh;min-height:100svh;margin-top:0;border:0;background:transparent;box-shadow:none;color:var(--d-ink)}
+.decode-hero{flex:1}
+.decode-footline{margin-top:auto}
+.decode-topline{border-color:var(--d-line);padding-left:24px;padding-right:24px}
+.decode-nav{display:flex;align-items:center;flex-wrap:wrap;gap:0 24px;border-bottom:0;padding:0 24px}
+.decode-greeting{flex:1 1 310px;padding:20px 0}
+.decode-stat{border:0;padding:12px 0;min-width:78px}
+.decode-navlink{border:0;padding:12px 0}
+.decode-navlink:hover,.decode-navlink:focus-visible{background:rgba(96,165,250,.16);color:#b9d9ff}
+.decode-copy{border:0}
+.decode-primary{background:#60a5fa!important;border-color:#60a5fa;color:#030509!important}
+.decode-primary:hover,.decode-primary:focus-visible{background:#94c5ff!important;border-color:#94c5ff}
+.decode-art{background:transparent}
+.decode-visual .axis{stroke:#59708b}.decode-visual .form{stroke:#bfcee3}.decode-visual .soft{stroke:#8299b5}.decode-visual .ghost{stroke:#6f86a4}
+.decode-node{background:#0b1524;color:#e6f0ff;border-color:#a4bfde;box-shadow:0 0 0 7px rgba(3,5,9,.77)}
+.decode-node:hover,.decode-node:focus-visible{background:#60a5fa;color:#030509;border-color:#60a5fa;box-shadow:0 0 0 11px rgba(96,165,250,.16)}
+.decode-node[aria-pressed="true"]{background:#60a5fa;color:#030509;border-color:#60a5fa;box-shadow:0 0 0 7px rgba(96,165,250,.17)}
+.decode-console{background:rgba(7,15,27,.7);border-color:var(--d-line)}
+.decode-footline{border-top:0;padding-left:24px;padding-right:24px}
+@media(max-width:1050px){.decode-nav{gap:0 20px}}
+@media(max-width:760px){.decode-topline{padding-left:18px;padding-right:18px}.decode-nav{padding:0 18px 7px;gap:0 17px}.decode-greeting{flex-basis:100%;padding:16px 0 8px;border-bottom:0}.decode-stat{padding:8px 0 13px;min-width:0}.decode-copy{border-bottom:0;padding-top:58px}.decode-art{min-height:420px}.decode-footline{padding-left:18px;padding-right:18px}.ambient-flow:after{background:linear-gradient(180deg,rgba(7,9,20,.35),rgba(7,9,20,.08) 65%,rgba(7,9,20,.24))}}
+@media(max-width:440px){.decode-nav{gap:0 14px}.decode-stat-value{font-size:12px}.decode-copy{min-height:340px;padding-top:50px}.decode-art{min-height:370px}}
+
+/* Keep the same moving field visible behind every section of the brief. */
+body{--paper:#030509;--wash:rgba(14,27,45,.72);--head:#eef3ff;--ink:#f3f6ff;--body:#c3ccdb;--muted:#9aa9bf;--num:#73859e;--hair:rgba(185,207,238,.17);--band:rgba(185,207,238,.2);--accent:#60a5fa;position:relative;isolation:isolate;color:var(--body)}
+body>.top,body>main.wrap{position:relative;z-index:1}
+body>.top{background:transparent}
+body .pixel,body .closing,body .notes{background:rgba(14,27,45,.55)}
+body .practice,body .word,body .soon,body .origin{background:rgba(14,27,45,.68)}
+
+/* The Needs attention constellation now continues behind every section. */
+.constellation-section:not(#finish){padding-top:64px;padding-bottom:64px}
+html,body{overflow-x:clip}
+@media(max-width:760px){.constellation-section:not(#finish){padding-top:48px;padding-bottom:48px}}
+@media(prefers-reduced-motion:reduce){.ambient-flow:before{animation:none;will-change:auto}}
+@media(prefers-reduced-motion:reduce){.cursor-glow{transition:none;will-change:auto}}
+@media(pointer:coarse){.cursor-glow{display:none}}
+
+/* The opening signal is a small daily puzzle; the rest of the brief appears on solve. */
+html.brief-locked body>.top>.wrap>:not(.decode-shell),html.brief-locked body>main.wrap{display:none}
+html.brief-locked .decode-secondary,html.brief-locked .decode-navlink{visibility:hidden}
+html.brief-locked .decode-primary{background:rgba(96,165,250,.1)!important;border-color:rgba(96,165,250,.58);color:#b9d9ff!important}
+.decode-art.is-wrong .decode-clue{color:#f5a8b4}
+.decode-art.is-wrong .decode-console{box-shadow:inset 0 1px rgba(245,168,180,.48)}
+html.brief-open body>.top>.wrap>:not(.decode-shell),html.brief-open body>main.wrap{animation:brief-reveal .75s cubic-bezier(.18,.8,.2,1) both}
+@keyframes brief-reveal{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){html.brief-open body>.top>.wrap>:not(.decode-shell),html.brief-open body>main.wrap{animation:none}}
+
+/* Daily puzzle controls and the handoff into the opened brief. */
+.decode-visual .decode-motif{opacity:.3}
+.decode-visual .signal-edge{stroke:#79b6f6;stroke-width:1.5;opacity:.6;fill:none}
+.decode-visual .signal-path{stroke:#63b3ff;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;fill:none;filter:drop-shadow(0 0 8px rgba(96,165,250,.8))}
+.decode-node.is-entry{background:#60a5fa;color:#06101e;border-color:#b8d9ff;box-shadow:0 0 0 7px rgba(96,165,250,.2),0 0 22px rgba(96,165,250,.55)}
+.decode-node.is-exit{border:2px solid #d9ecff;box-shadow:0 0 0 7px rgba(217,236,255,.09),0 0 18px rgba(217,236,255,.26)}
+.decode-node.is-entry:after,.decode-node.is-exit:after{position:absolute;top:calc(100% + 11px);left:50%;transform:translateX(-50%);font:500 8px/1 'JB Mono',ui-monospace,monospace;letter-spacing:.12em;color:#b8d9ff;pointer-events:none}
+.decode-node.is-entry:after{content:'ENTRY'}
+.decode-node.is-exit:after{content:'EXIT'}
+.decode-reset{position:absolute;right:27px;bottom:calc(100% + 13px);padding:5px 0;border:0;background:none;color:#a9d3ff;font:500 9px/1 'JB Mono',ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.decode-reset:hover,.decode-reset:focus-visible{color:#fff;text-decoration:underline}
+.decode-reset[hidden]{display:none}
+.brief-transition{position:fixed;inset:0;z-index:50;display:grid;place-items:center;overflow:hidden;visibility:hidden;opacity:0;pointer-events:none;background:radial-gradient(circle at 50% 50%,#102b50 0%,#061224 45%,#02060d 100%);color:#f2f7ff;transition:opacity .22s ease}
+html.brief-transitioning .brief-transition{visibility:visible;opacity:1;pointer-events:auto}
+html.brief-transitioning body{overflow:hidden}
+.brief-transition:before,.brief-transition:after{content:'';position:absolute;left:50%;top:50%;width:min(80vmin,680px);aspect-ratio:1;border:1px solid rgba(139,202,255,.75);border-radius:50%;opacity:0;transform:translate(-50%,-50%) scale(.18)}
+html.brief-transitioning .brief-transition:before{animation:brief-wave 1.6s ease-out both}
+html.brief-transitioning .brief-transition:after{animation:brief-wave 1.6s ease-out .2s both}
+@keyframes brief-wave{0%{opacity:0;transform:translate(-50%,-50%) scale(.18)}22%{opacity:.88}100%{opacity:0;transform:translate(-50%,-50%) scale(2.5)}}
+.brief-transition-core{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+html.brief-transitioning .brief-transition-core{animation:brief-core 1.7s ease-in-out both}
+@keyframes brief-core{0%{opacity:0;transform:translateY(22px) scale(.94)}25%,68%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-16px) scale(1.06)}}
+.brief-transition-mark{display:grid;place-items:center;width:48px;height:48px;border:1px solid rgba(139,202,255,.65);color:#7abaff;font-size:23px;box-shadow:0 0 32px rgba(96,165,250,.24)}
+.brief-transition-kicker,.brief-transition-sub{font:500 10px/1.4 'JB Mono',ui-monospace,monospace;letter-spacing:.18em;text-transform:uppercase;color:#8dc5ff}
+.brief-transition-core strong{font:650 clamp(34px,5vw,70px)/1 'DM Sans',system-ui,sans-serif;letter-spacing:-.055em}
+.brief-transition-sub{color:#819bbd;letter-spacing:.09em}
+@media(max-width:760px){html.brief-locked .decode-shell{min-height:100svh}.decode-reset{right:17px;bottom:calc(100% + 9px)}.decode-visual .signal-edge{stroke-width:2}}
+
+/* Three daily game types share the same minimal signal art. */
+.decode-node[hidden]{display:none}
+.decode-node.is-number{font-size:13px;font-weight:700}
+.decode-node-symbol{display:inline-grid;place-items:center;transform-origin:center}
+.decode-node.is-solved{opacity:.48;box-shadow:0 0 0 6px rgba(96,165,250,.09)}
+.decode-node.is-flash{transform:translate(-50%,-50%) scale(1.22);background:#e8f5ff;color:#06101e;border-color:#fff;box-shadow:0 0 0 13px rgba(96,165,250,.23),0 0 42px rgba(96,165,250,.8)}
+.decode-node.is-hint{animation:signal-hint .75s ease-in-out 2}
+@keyframes signal-hint{50%{box-shadow:0 0 0 16px rgba(96,165,250,.3),0 0 35px rgba(96,165,250,.75);border-color:#e8f5ff}}
+.decode-visual .signal-orbit{fill:none;stroke:#79b6f6;stroke-width:1.15;stroke-dasharray:3 9;opacity:.52}
+.decode-visual .signal-match{stroke:#63b3ff;stroke-width:2.6;stroke-linecap:round;filter:drop-shadow(0 0 7px rgba(96,165,250,.72))}
+.decode-hint{position:absolute;right:150px;bottom:calc(100% + 13px);padding:5px 0;border:0;background:none;color:#a9d3ff;font:500 9px/1 'JB Mono',ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.decode-hint:hover,.decode-hint:focus-visible{color:#fff;text-decoration:underline}
+.decode-hint[hidden]{display:none}
+/* The unlocked hero is an original image, never the completed game board. */
+.decode-visual .daily-art{display:none}
+.decode-art.is-complete .decode-visual>:not(.daily-art){display:none}
+.decode-art.is-complete .decode-visual .daily-art{display:inline}
+.decode-art.is-complete .decode-node{display:none}
+.decode-art.is-complete .decode-artlabel{color:#a6d5ff}
+.daily-render-stage{position:absolute;z-index:1;inset:28px 3% 78px;display:none;align-items:center;justify-content:center;perspective:900px;pointer-events:none}
+.decode-art.has-daily-render.is-complete .decode-visual{display:none}
+.decode-art.has-daily-render.is-complete .daily-render-stage{display:flex}
+.daily-render-image{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 18px rgba(79,165,255,.16));transform-style:preserve-3d;animation:daily-render-fold 4.2s ease-in-out infinite}
+.daily-wire-canvas{position:absolute;z-index:2;inset:0;display:block;width:100%;height:100%;mix-blend-mode:screen}
+.daily-render-stage.has-authored-image .daily-render-image{opacity:.56}
+.daily-render-stage.has-authored-image .daily-wire-canvas{opacity:.82}
+.daily-render-halo{position:absolute;width:min(68%,420px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(75,149,255,.26),rgba(49,116,231,.08) 42%,transparent 70%);filter:blur(24px);animation:daily-render-halo 4.2s ease-in-out infinite}
+.daily-render-stage[data-motion="orbit"] .daily-render-image{animation:daily-render-orbit 9s ease-in-out infinite}
+.daily-render-stage[data-motion="orbit"] .daily-render-halo{animation-duration:9s}
+.decode-art.motion-ready .daily-render-image,.decode-art.motion-ready .daily-render-halo{animation:none}
+@keyframes daily-render-fold{12%{transform:scale(1.045) rotateY(3deg)}26%{transform:scale(1.005)}38%{transform:scale(1.03) rotateY(-2deg)}100%{transform:scale(1)}}
+@keyframes daily-render-orbit{50%{transform:scale(1.025) rotateY(7deg) rotateX(-2deg)}}
+@keyframes daily-render-halo{50%{transform:scale(1.14);opacity:.72}}
+.daily-art-core{transform-box:view-box;transform-origin:center;animation:daily-art-heartbeat 3.8s ease-in-out infinite}
+.daily-art-waves,.daily-art-petals,.daily-art-center,.daily-art-shards,.daily-art-orbits,.daily-art-lattice,.daily-art-stars,.daily-art-corona,.daily-art-ribbons,.daily-art-spokes,.daily-art-glint,.daily-art-variation{transform-box:view-box;transform-origin:center}
+.daily-art-pulse-ring{transform-box:fill-box;transform-origin:center;animation:daily-art-ring 3.8s ease-out infinite}
+.decode-art.motion-ready .daily-art-core,.decode-art.motion-ready .daily-art-pulse-ring{animation:none}
+@keyframes daily-art-heartbeat{12%{transform:scale(1.075)}26%{transform:scale(1.01)}38%{transform:scale(1.055)}100%{transform:scale(1)}}
+@keyframes daily-art-ring{0%{opacity:0;transform:scale(.62)}20%{opacity:.58;transform:scale(1)}75%,100%{opacity:0;transform:scale(1.48)}}
+@media(prefers-reduced-motion:reduce){.daily-art-core,.daily-art-pulse-ring,.daily-render-image,.daily-render-halo{animation:none}}
+@media(max-width:760px){.daily-render-stage{inset:30px 2% 77px}}
+@media(max-width:760px){.decode-hint{right:132px;bottom:calc(100% + 9px)}}
+@media(prefers-reduced-motion:reduce){.decode-node.is-hint{animation:none;outline:2px solid #e8f5ff;outline-offset:5px}}
+
+/* The locked puzzle is a shallow 3D instrument. All controls keep their game positions. */
+.decode-art{perspective:1000px}
+.puzzle-scene{position:absolute;z-index:1;inset:0;transform-style:preserve-3d;transform:rotateX(var(--puzzle-tilt-x,0deg)) rotateY(var(--puzzle-tilt-y,0deg));transform-origin:50% 46%;transition:transform .36s cubic-bezier(.18,.7,.2,1),opacity .7s ease,visibility 0s;pointer-events:none}
+.puzzle-scene .decode-visual{z-index:1;transform:translateZ(8px);pointer-events:none}
+.puzzle-scene .decode-node{pointer-events:auto;width:42px;height:42px;transform:translate(-50%,-50%) translateZ(24px);background:rgba(5,20,38,.48);backdrop-filter:blur(7px);border:1px solid rgba(151,208,251,.7);color:#e6f4ff;box-shadow:0 0 0 5px rgba(72,153,245,.055),0 7px 19px rgba(0,5,19,.28),inset 0 0 12px rgba(96,165,250,.09);transition:transform .28s cubic-bezier(.2,.8,.2,1),background .22s,color .22s,border-color .22s,box-shadow .28s}
+.puzzle-scene .decode-node:before{content:'';position:absolute;inset:-7px;border:1px solid rgba(138,201,252,.42);border-radius:50%;pointer-events:none}
+.puzzle-scene .decode-node:before{animation:puzzle-node-breath 3.6s ease-in-out infinite;animation-delay:calc(var(--node-index,0) * -.38s)}
+@keyframes puzzle-node-breath{0%,100%{opacity:.3;transform:scale(.91)}50%{opacity:.76;transform:scale(1.12)}}
+.puzzle-scene .decode-node-symbol{transform:translateZ(8px);text-shadow:0 0 7px rgba(185,226,255,.42)}
+.puzzle-scene .decode-node.is-number{font-weight:600}
+.puzzle-scene .decode-node:hover,.puzzle-scene .decode-node:focus-visible{transform:translate(-50%,-50%) translateZ(38px) scale(1.055);background:rgba(41,104,172,.26);border-color:#c5e9ff;color:#fff;box-shadow:0 0 0 6px rgba(96,165,250,.08),0 9px 22px rgba(0,5,19,.33),0 0 20px rgba(96,179,255,.26)}
+.puzzle-scene .decode-node[aria-pressed="true"]{transform:translate(-50%,-50%) translateZ(34px);background:rgba(68,150,230,.25);color:#fff;border-color:#d8efff;box-shadow:0 0 0 6px rgba(96,165,250,.12),0 8px 22px rgba(0,5,19,.3),0 0 20px rgba(96,179,255,.32)}
+.puzzle-scene .decode-node.is-entry{background:rgba(67,153,232,.26);border-color:#b6e3ff;color:#fff}
+.puzzle-scene .decode-node.is-exit{border:1px solid #e2f4ff}
+.puzzle-scene .decode-node.is-flash{transform:translate(-50%,-50%) translateZ(48px) scale(1.13);background:rgba(219,243,255,.93);color:#06101e;border-color:#fff;box-shadow:0 0 0 8px rgba(96,165,250,.14),0 0 28px rgba(96,165,250,.45)}
+.puzzle-scene .decode-visual .signal-edge{stroke:#8bc8ff;opacity:.65;filter:drop-shadow(0 0 5px rgba(82,162,255,.6))}
+.puzzle-scene .decode-visual .signal-back-network{transform:translate(11px,9px);opacity:.24}
+.puzzle-scene .decode-visual .signal-back-network .signal-edge{stroke:#143f81;stroke-width:2.5;filter:none}
+.puzzle-scene .decode-visual .signal-energy-network .signal-edge{stroke:#c5e9ff;stroke-width:2.2;stroke-linecap:round;stroke-dasharray:2 116;opacity:.68;filter:drop-shadow(0 0 5px rgba(123,196,255,.9));animation:puzzle-signal-flow 4.6s linear infinite}
+.puzzle-scene .decode-visual .signal-energy-network .signal-edge:nth-child(2n){animation-delay:-2.1s}
+.puzzle-scene .decode-visual .signal-orbit{animation:puzzle-orbit-flow 5s linear infinite}
+@keyframes puzzle-signal-flow{to{stroke-dashoffset:-118}}
+@keyframes puzzle-orbit-flow{to{stroke-dashoffset:-96}}
+.puzzle-scene .decode-visual .signal-match{filter:drop-shadow(0 0 10px rgba(96,165,250,.9))}
+.puzzle-depth-canvas{position:absolute;z-index:0;inset:25px 5% 80px;width:90%;height:calc(100% - 105px);opacity:.27;mix-blend-mode:screen;pointer-events:none;mask-image:radial-gradient(ellipse 62% 64% at 50% 48%,#000 25%,transparent 100%)}
+.puzzle-scene[data-game="route"] .puzzle-depth-canvas{opacity:.14}
+.puzzle-scene[data-game="pulse"] .puzzle-depth-canvas{opacity:.2}
+.decode-art.is-complete .puzzle-scene{display:none}
+@media(max-width:760px){.puzzle-depth-canvas{opacity:.2}.puzzle-scene .decode-node{width:38px;height:38px;transform:translate(-50%,-50%) translateZ(18px)}.puzzle-scene .decode-node:hover,.puzzle-scene .decode-node:focus-visible{transform:translate(-50%,-50%) translateZ(30px) scale(1.04)}}
+@media(prefers-reduced-motion:reduce){.puzzle-scene{transform:none;transition:none}.puzzle-scene .decode-node{transition:none}.puzzle-scene .decode-node:before,.puzzle-scene .decode-visual .signal-energy-network .signal-edge,.puzzle-scene .decode-visual .signal-orbit{animation:none}}
+
+/* Keep the opening free of the small transmission and figure captions. */
+.decode-index,.decode-artlabel{display:none}
+
+/* Give the masthead a clear editorial type hierarchy. */
+.decode-topline{font:600 11px/1.3 'DM Sans',system-ui,sans-serif;letter-spacing:.075em;color:#a7bad1}
+.decode-brand{font-weight:750;letter-spacing:.055em;color:#f0f6ff}
+.decode-edition{font-weight:500;letter-spacing:.1em}
+.decode-live{font-weight:700;letter-spacing:.085em;color:#d8eaff}
+.decode-shell .decode-primary{font:italic 600 17px/1.1 'Fraunces',Georgia,serif;letter-spacing:-.025em;text-transform:none}
+@media(max-width:440px){.decode-topline{font-size:10px}}
+@media(max-width:760px){.decode-eyebrow{font-size:19px}}
+
+/* Give the puzzle readout the same editorial voice as its opening label. */
+.decode-console{grid-template-columns:minmax(0,1fr) auto;column-gap:14px;row-gap:7px;min-height:84px;padding:13px 24px 15px}
+.decode-console-head>span:first-child{grid-column:1;grid-row:1;color:#dcecff;font:italic 600 17px/1.2 'Fraunces',Georgia,serif;letter-spacing:-.02em;text-transform:none}
+.decode-progress{order:initial;grid-column:2;grid-row:1;align-self:center;min-width:0;padding-left:0;border-left:0;color:#78b9ff;font:700 13px/1.2 'DM Sans',system-ui,sans-serif;letter-spacing:.04em}
+.decode-clue{order:initial;grid-column:1/-1;grid-row:2;color:#c4d2e4;font:500 14px/1.35 'DM Sans',system-ui,sans-serif;text-align:left}
+.decode-shell .decode-hint,.decode-shell .decode-reset{font:italic 600 14px/1.2 'Fraunces',Georgia,serif;letter-spacing:-.01em;text-transform:none}
+@media(max-width:760px){.decode-console{padding:13px 18px 15px}.decode-console-head>span:first-child{font-size:16px}.decode-clue{font-size:13px}}
+@media(max-width:440px){.decode-console{min-height:82px;padding:12px 14px}.decode-console-head>span:first-child{font-size:15px}.decode-progress{font-size:12px}}
+
+/* Match the edition line to the header typography. */
+.decode-footline{font:700 11px/1.3 'DM Sans',system-ui,sans-serif;letter-spacing:.07em;color:#b9cbe3}
+.decode-footline span:first-child{font-weight:750;color:#dce9f8}
+@media(max-width:440px){.decode-footline{font-size:10px}}
+
+/* Use the hero paragraph's sans face for supporting copy throughout the brief. */
+html:root{--mono:'DM Sans',system-ui,sans-serif}
+.decode-stat-label,.decode-index,.decode-artlabel,.brief-transition-kicker,.brief-transition-sub,.why .fr{font-family:'DM Sans',system-ui,sans-serif}
+.decode-shell .decode-navlink,.decode-shell .decode-secondary,.decode-shell .decode-node{font-family:'DM Sans',system-ui,sans-serif}
+.decode-shell .decode-node.is-entry::after,.decode-shell .decode-node.is-exit::after{font-family:'DM Sans',system-ui,sans-serif}
+.decode-stat-label{font-size:10px}
+.decode-shell .decode-navlink,.decode-shell .decode-secondary{font-size:11px}
+/* Small section headings remain part of the display hierarchy. */
+.kick,.rail,.nk,.numsh,.sub2,h3,.idx-h,.toc,.plab,.wire .wl,.pide .ph,.frase .fl,.practice b,.ng .sub3,.quiz b,.word .wl,.trato .tl2,.why.watch b,.tablero .tbh,.deals .dh{font-family:'JB Mono',ui-monospace,SFMono-Regular,Menlo,monospace!important}
+
+/* A continuous spine and joints give the long brief a light skeleton. */
+body>main.wrap{--spine-offset:14px;position:relative}
+body>main.wrap::before{content:"";position:absolute;top:0;bottom:0;left:calc(clamp(18px,2.5vw,36px) - var(--spine-offset));width:1px;background:linear-gradient(to bottom,transparent,rgba(111,177,245,.34) 3%,rgba(111,177,245,.21) 96%,transparent);pointer-events:none}
+body>.top>.wrap::before{content:"";position:absolute;top:100svh;bottom:0;left:calc(clamp(18px,2.5vw,36px) - 14px);width:1px;background:linear-gradient(to bottom,transparent,rgba(111,177,245,.23) 5%,rgba(111,177,245,.23));pointer-events:none}
+body>.top>.wrap>.ticker,body>.top>.wrap>.reflect{position:relative}
+body>.top>.wrap>.ticker::before,body>.top>.wrap>.reflect::before{content:"";position:absolute;top:0;left:-14px;width:7px;height:7px;border:1px solid rgba(150,205,255,.65);border-radius:50%;background:#0c203b;box-shadow:0 0 0 5px rgba(57,137,220,.08);transform:translate(-50%,-50%);pointer-events:none}
+body>main.wrap>section{position:relative}
+body>main.wrap>section::before{content:"";position:absolute;z-index:1;top:0;left:calc(-1 * var(--spine-offset));width:7px;height:7px;border:1px solid rgba(150,205,255,.8);border-radius:50%;background:#0c203b;box-shadow:0 0 0 5px rgba(57,137,220,.1),0 0 14px rgba(75,160,245,.25);transform:translate(-50%,-50%);pointer-events:none}
+body>main.wrap>section::after{content:"";position:absolute;top:0;left:calc(-1 * var(--spine-offset));right:0;height:1px;background:linear-gradient(90deg,rgba(111,177,245,.37),rgba(111,177,245,.18) 60%,transparent);pointer-events:none}
+body>main.wrap>section:nth-of-type(3n)::before{background:#63b4ff;box-shadow:0 0 0 5px rgba(57,137,220,.12),0 0 18px rgba(75,160,245,.5)}
+@media(max-width:760px){body>main.wrap{--spine-offset:9px}body>main.wrap::before{left:calc(16px - var(--spine-offset))}body>main.wrap>section::before{width:5px;height:5px}}
+@media(max-width:760px){body>.top>.wrap::before,body>.top>.wrap>.ticker::before,body>.top>.wrap>.reflect::before{display:none}}
+
+/* Make the locked instrument read as a lit object against the constellation. */
+html.brief-locked .puzzle-scene .decode-visual .decode-motif{opacity:.66;filter:drop-shadow(0 0 6px rgba(99,178,255,.4))}
+html.brief-locked .puzzle-scene .decode-visual .form{stroke:#add8ff;stroke-width:1.8}
+html.brief-locked .puzzle-scene .decode-visual .soft{stroke:#89bde9;stroke-width:1.45}
+html.brief-locked .puzzle-scene .decode-visual .ghost{stroke:#78b1e6;opacity:.8}
+html.brief-locked .puzzle-scene .decode-visual .axis{stroke:#88bce9;opacity:.72}
+html.brief-locked .puzzle-scene .decode-visual .signal-network .signal-edge{stroke:#b3ddff;stroke-width:2;opacity:.9;filter:drop-shadow(0 0 7px rgba(96,176,255,.68))}
+html.brief-locked .puzzle-scene .decode-visual .signal-orbit{stroke:#90caff;opacity:.78}
+html.brief-locked .puzzle-scene .decode-node{background:rgba(17,51,86,.72);border-color:#b7dcff;color:#fff;box-shadow:0 0 0 5px rgba(92,169,251,.1),0 0 17px rgba(85,165,250,.25),inset 0 0 14px rgba(113,194,255,.15)}
+html.brief-locked .puzzle-scene .decode-node::before{border-color:rgba(161,218,255,.68)}
+html.brief-locked .puzzle-depth-canvas{opacity:.42}
+@media(max-width:760px){html.brief-locked .puzzle-depth-canvas{opacity:.32}}
+
+/* Replace the stock arrow with a compact four-beat signal. */
+.decode-primary .decode-action-signal{display:inline-flex;align-items:center;justify-content:center;gap:3px;width:27px;height:17px;flex:none}
+.decode-action-signal i{display:block;width:2px;background:currentColor;border-radius:1px;opacity:.9}
+.decode-action-signal i:nth-child(1){height:5px}.decode-action-signal i:nth-child(2){height:12px}.decode-action-signal i:nth-child(3){height:16px}.decode-action-signal i:nth-child(4){height:7px}
+.decode-action-signal i{transform-origin:50% 50%;animation:action-signal-sweep 2.1s ease-in-out infinite}
+.decode-action-signal i:nth-child(2){animation-delay:.14s}.decode-action-signal i:nth-child(3){animation-delay:.28s}.decode-action-signal i:nth-child(4){animation-delay:.42s}
+@keyframes action-signal-sweep{0%,15%,68%,100%{transform:translateX(0) scaleY(.75);opacity:.48}30%,42%{transform:translateX(2px) scaleY(1.22);opacity:1}}
+@media(prefers-reduced-motion:reduce){.decode-action-signal i{animation:none;transform:none;opacity:.9}}
+
+/* The scenic emblem gives the masthead a piece of original artwork. */
+.decode-brand-art{position:relative;display:block;flex:none;width:136px;height:45px}
+.decode-brand-art img{display:block;width:100%;height:100%;object-fit:contain}
+.decode-brand-name{font-size:11px}
+@media(max-width:760px){.decode-brand-art{width:118px;height:39px}}
+@media(max-width:440px){.decode-brand-name{display:none}.decode-brand-art{width:110px;height:37px}}
+
+/* Keep the title-to-action pause after removing the explanatory paragraph. */
+.decode-copy .decode-actions{margin-top:clamp(88px,11vh,125px)}
+@media(max-width:760px){.decode-copy .decode-actions{margin-top:68px}}
+@media(max-width:440px){.decode-copy .decode-actions{margin-top:52px}}
+
+/* The cursor shifts a recessed light well behind the puzzle's floating board. */
+html.brief-locked .puzzle-scene::before{content:"";position:absolute;z-index:0;inset:15% 13% 20%;border-radius:50%;pointer-events:none;background:radial-gradient(ellipse at 50% 48%,rgba(43,121,199,.3),rgba(15,53,102,.16) 42%,transparent 71%),repeating-radial-gradient(ellipse at 50% 52%,transparent 0 30px,rgba(125,197,255,.11) 31px 32px,transparent 33px 54px);box-shadow:inset 0 0 60px rgba(90,169,250,.12),0 0 46px rgba(35,107,205,.12);transform:translate3d(var(--puzzle-back-x,0px),var(--puzzle-back-y,0px),-70px) rotateX(58deg) scale(1.18);transition:transform .32s ease-out}
+html.brief-locked .puzzle-scene::after{content:"";position:absolute;z-index:0;left:calc(50% - 180px);top:calc(45% - 180px);width:360px;height:360px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(125,207,255,.34),rgba(64,144,244,.17) 29%,transparent 67%);filter:blur(15px);mix-blend-mode:screen;transform:translate3d(var(--puzzle-light-x,0px),var(--puzzle-light-y,0px),-30px);transition:transform .26s ease-out}
+html.brief-locked .puzzle-depth-canvas{transform:translate3d(var(--puzzle-back-x,0px),var(--puzzle-back-y,0px),-40px) scale(1.08);transition:transform .34s ease-out}
+@media(prefers-reduced-motion:reduce){html.brief-locked .puzzle-scene::before,html.brief-locked .puzzle-scene::after,html.brief-locked .puzzle-depth-canvas{transform:none;transition:none}}
+
+/* The cipher appears when the opening action is pressed. */
+.decode-art .decode-console,.decode-art .decode-hint,.decode-art .decode-reset{transition:opacity .48s ease .16s,visibility 0s}
+.decode-art.puzzle-awaiting .puzzle-scene,.decode-art.puzzle-awaiting .decode-console,.decode-art.puzzle-awaiting .decode-hint,.decode-art.puzzle-awaiting .decode-reset{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s ease,visibility 0s linear .2s}
+.decode-art.puzzle-awaiting>.decode-visual,.decode-art.puzzle-awaiting>.decode-node{visibility:hidden}
+@media(prefers-reduced-motion:reduce){.decode-art .puzzle-scene,.decode-art .decode-console,.decode-art .decode-hint,.decode-art .decode-reset{transition:none}}
