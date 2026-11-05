@@ -27,11 +27,11 @@ python3 -m http.server 8765
 
 Open `http://localhost:8765/`. The demo uses sample content and lets you save a name and topics in your browser. No account or connection to email, calendar, or live news is active yet.
 
-The original personal brief is intentionally excluded from Git. `index.html` is the public-safe demo entry point.
+The original personal brief is intentionally excluded from this public repository. `index.html` is the public-safe demo entry point.
 
 ## Public code and private issues
 
-This repository is the public code and sample demo. Nico's actual dated briefs, including calendar and email details, belong in a separate private repository prepared in the local `personal-brief/` folder. That folder is ignored here so personal HTML cannot be added to this public repository by an ordinary `git add`. The private repository has its own `index.html`, dated issue files, assets, and update script. GitHub Pages is not enabled for the private issues.
+This repository is the public code and sample demo. Nico's actual dated briefs, including calendar and email details, live in the separate private `niconieves25/nico-morning-brief-private` repository and the local `personal-brief/` folder. That folder is ignored here so personal HTML cannot be added to this public repository by an ordinary `git add`. The private repository has its own `index.html`, dated issue files, assets, and update script. GitHub Pages is not enabled for the private issues.
 
 ## What works today
 
@@ -50,4 +50,4 @@ The first product test is a shareable web link from Expo. Watch whether people f
 
 ## Repository status
 
-This folder can be a local Git repository. Creating a remote GitHub repository requires signing in to GitHub first. Keep the excluded personal brief and any future `.env` files out of a public repository.
+The public demo is stored at https://github.com/niconieves25/daily-morning-brief. Personal issues are stored separately in a private GitHub repository. Keep the excluded personal brief and any future `.env` files out of this public repository.
