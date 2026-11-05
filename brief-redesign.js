@@ -696,6 +696,10 @@
 
 // Keep the overview readable; unfold each long reading section only on request.
 (() => {
+  // These retired modules stay out of future briefs that use this layout too.
+  document.querySelectorAll('body > main.wrap > #workout, body > main.wrap > .numblk[aria-label="The number"], body > main.wrap > #finish')
+    .forEach(section => section.remove());
+
   const topWrap = document.querySelector('.top > .wrap');
   const firstOverviewItem = topWrap?.querySelector(':scope > #brief-start');
   if (firstOverviewItem) {
@@ -723,17 +727,13 @@
     overview: 'Markets, priorities, and story signals.',
     reflection: 'A reading and a moment to pause.',
     attention: 'The things that need your attention today.',
-    workout: 'Your training plan and the next session.',
     news: 'The stories behind today’s headlines.',
-    number: 'One number worth keeping.',
     oilgas: 'One idea to learn and take with you.',
-    comer: 'A place and the story behind it.',
-    finish: 'The next few days, before you go.'
+    comer: 'A place and the story behind it.'
   };
   const titles = {
     overview: 'At a glance',
     reflection: 'Morning reflection',
-    number: 'The number',
     oilgas: 'Oil & Gas lesson',
     comer: 'Dónde comer'
   };
@@ -752,7 +752,7 @@
     const panel = [...section.children].find(child => child !== rail && child.tagName === 'DIV');
     if (!rail || !panel) continue;
 
-    const id = section.id || 'number';
+    const id = section.id || `section-${index + 1}`;
     if (!section.id) section.id = id;
     const heading = panel.querySelector('h2');
     const title = titles[id] || heading?.textContent.trim() || rail.firstChild?.textContent.trim() || 'Read this section';
