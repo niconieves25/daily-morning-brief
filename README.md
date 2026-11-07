@@ -29,6 +29,10 @@ Open `http://localhost:8765/`. The demo uses sample content and lets you save a 
 
 The original personal brief is intentionally excluded from this public repository. `index.html` is the public-safe demo entry point.
 
+## Project design skills
+
+Codex uses `ui-ux-pro-max` and `impeccable` from `.agents/skills/` for UI and UX work in this project. The installed skill files stay local; `skills-lock.json` records their sources. After cloning the repository, run `npx skills experimental_install` to restore them. Codex discovers the skills on the next turn.
+
 ## Public code and private issues
 
 This repository is the public code and sample demo. Nico's actual dated briefs, including calendar and email details, live in the separate private `niconieves25/nico-morning-brief-private` repository and the local `personal-brief/` folder. That folder is ignored here so personal HTML cannot be added to this public repository by an ordinary `git add`. The private repository has its own `index.html`, dated issue files, assets, and update script. GitHub Pages is not enabled for the private issues.
